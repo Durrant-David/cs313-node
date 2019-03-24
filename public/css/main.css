@@ -1,3 +1,4 @@
+/*
 .jumbotron {
   background: #532F8C;
   color: white;
@@ -24,4 +25,63 @@
     border: 2px solid white; }
     .jumbotron .lang-logo img {
       max-width: 100%; }
+*/
+.lrg-img-background {
+  height: 80vh; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.row {
+    text-align: center;
+/*    padding-top: 50px;*/
+}
+
+/*
+div.row > div > img {
+    width: 250px;
+}
+*/
+
+.home-message-title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    font-size: 2em;
+    background: rgba(120, 120, 120, 0.3);
+    width: 500px;
+}
+
+.home-message {
+    float: bottom;
+    font-size: 1em;
+    text-align: center;
+    color: white;
+    background: rgba(192, 192, 192, 0.3);
+    width: 500px;
+}
+
+.small-img-1 {
+    height: 250px;
+  -ms-transform: rotate(-20deg); /* IE 9 */
+  -webkit-transform: rotate(-20deg); /* Safari */
+  transform: rotate(-20deg);
+}
+
+.small-img-2 {
+    height: 250px;
+  -ms-transform: rotate(5deg); /* IE 9 */
+  -webkit-transform: rotate(5deg); /* Safari */
+  transform: rotate(5deg);
+}
+
+.small-img-3 {
+    height: 250px;
+  -ms-transform: rotate(-12deg); /* IE 9 */
+  -webkit-transform: rotate(-12deg); /* Safari */
+  transform: rotate(-12deg);
+}
 

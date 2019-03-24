@@ -11,12 +11,15 @@ const connectionString = process.env.DATABASE_URL;
 //const postal = require('./models/postalRate');
 const pool = new Pool({connectionString: connectionString});
 var routes = require('./routes/index');
+var content = require('./routes/content/index');
 var users = require('./routes/users');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', routes);
+app.use('/', content);
+//app.use('/', (req, res) => res.render('pages/index.ejs'));
 app.use('/login', (req, res) => res.render('pages/login'));
 app.use('/user', (req, res) => res.render('pages/user'));
 app.use('/users', (req, res) => res.render('pages/users'));
@@ -27,41 +30,3 @@ app.set('view engine', 'ejs');
 //app.get('/postal_rate', postal.handlePostal);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-//router.post('/checkLogin', checkLogin);
-//function checkLogin(request, response) {
-//	const username = request.query.username;
-//	const password = request.query.password;
-//
-//	getPasswordDb(username, function(error, result) {
-//        
-//		if (error || result == null || result.length != 1) {
-//			response.status(500).json({success: false, data: error});
-//		} else {
-//			console.log(result[0].password);
-//		}
-//	});
-//}
-//
-////Get single user
-//function getPasswordDb(username, callback) {
-//	console.log("Getting user " + username + " from DB");
-//
-//	const sql = "SELECT id, username, password FROM users WHERE username = $1";
-//
-//	const params = [username];
-//
-//	pool.query(sql, params, function(err, result) {
-//		if (err) {
-//			console.log("Error in query: ")
-//			console.log(err);
-//			callback(err, null);
-//		}
-//
-//		// Log this to the console for debugging purposes.
-//		console.log("Found result: " + JSON.stringify(result.rows));
-//
-//
-//		callback(null, result.rows);
-//	});
-//
-//} 

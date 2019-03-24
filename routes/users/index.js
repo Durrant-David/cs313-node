@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var session = require('client-sessions');
-const usersRoute = require('./users')
 const {
     Pool
 } = require("pg");
@@ -10,21 +9,20 @@ const pool = new Pool({
     connectionString: connectionString
 });
 
-router.get('/', (req, res) => res.render('pages/index.ejs'));
 //Get all users
-router.get('/api/users', getUsers);
+router.get('/', getUsers);
 
 //Insert new user
-router.post('/api/users', insertUser);
+router.post('/', insertUser);
 
 //Get single user
-router.get('/api/users', getUser);
+router.get('/', getUser);
 
 //Update user
-router.put('/api/users', setUser);
+router.put('/', setUser);
 
 //Delete user
-router.delete('/api/users', deleteUser);
+router.delete('/', deleteUser);
 
 router.post('/checkLogin', checkLogin);
 
