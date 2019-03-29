@@ -1,33 +1,6 @@
-/*
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-bottom: 80px; }
-  .jumbotron .btn-primary {
-    background: #845ac7;
-    border-color: #845ac7; }
-    .jumbotron .btn-primary:hover {
-      background: #7646c1; }
-  .jumbotron p {
-    color: #d9ccee;
-    max-width: 75%;
-    margin: 1em auto 2em; }
-  .navbar + .jumbotron {
-    margin-top: -20px; }
-  .jumbotron .lang-logo {
-    display: block;
-    background: #B01302;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    border: 2px solid white; }
-    .jumbotron .lang-logo img {
-      max-width: 100%; }
-*/
+
 .lrg-img-background {
-  height: 80vh; 
+  height: 110vh; 
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,19 +9,12 @@
 
 div.row {
     text-align: center;
-/*    padding-top: 50px;*/
 }
-
-/*
-div.row > div > img {
-    width: 250px;
-}
-*/
 
 .home-message-title {
     display: inline-block;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 100px;
     color: white;
     font-size: 2em;
     background: rgba(120, 120, 120, 0.3);
@@ -85,3 +51,14 @@ div.row > div > img {
   transform: rotate(-12deg);
 }
 
+.contact-form {
+    padding: 30vh 5vh;
+}
+
+#mySVG {
+/*  position: fixed;*/
+/*  top: 15%;*/
+  width: 400px;
+  height: 210px;
+  margin-left:-50px;
+}

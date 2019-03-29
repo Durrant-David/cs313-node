@@ -12,39 +12,99 @@
         <div class="home-message-title" onload="loadContent(this, 'home-message-title')"></div>
         <div class="home-message"></div>
     </div>
+    <!--
     <div class="row">
         <div class="col-sm-4"><img class="small-img-1" src="/images/w400-903990nYNWfN7C.jpg"></div>
         <div class="col-sm-4"><img class="small-img-2" src="/images/w400-903990vY9HmRU8.jpg"></div>
         <div class="col-sm-4"><img class="small-img-3" src="/images/photo-1470321386428-4b1668f21ad3.jpg"></div>
     </div>
+-->
     <div class="lrg-img-background" style="background-image: url('/images/store-pic-2.jpg')">
-    
+        <div class="slide2-message-title" onload="loadContent(this, 'slide2-message-title')"></div>
+        <div class="slide2-message"></div>
     </div>
-    <div></div>
-    <div class="lrg-img-background" style="background-image: url('/images/store-pic-2.jpg')">
-    
+    <div class="lrg-img-background" style="background-image: url('/images/1.jpg')">
+        <div class="slide3-message-title" onload="loadContent(this, 'slide3-message-title')"></div>
+        <div class="slide3-message"></div>
     </div>
-    <div></div>
-    <div class="lrg-img-background" style="background-image: url('/images/store-pic-2.jpg')">
-    
+    <div class="lrg-img-background" style="background-image: url('/images/photo-1470321386428-4b1668f21ad3.jpg')">
+        <div class="slide4-message-title" onload="loadContent(this, 'slide4-message-title')"></div>
+        <div class="slide4-message"></div>
     </div>
-    <div class="contact">
-    
+    <div class="contact lrg-img-background" style="background-image: url('/images/20190208_150716_HDR.jpg')">
+        <div class="container contact-form">
+            <form class="form-horizontal" action="/action_page.php">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="pwd">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="pwd">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" id="message" placeholder="Enter message"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <svg id="mySVG">
+        <path fill="none" stroke="red" stroke-width="3" id="triangle" d="M150 0 L75 200 L225 200 Z" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
     <!--<img src="/images/Old-European-Halo-Engagement-Ring-on-Purple-Background.jpg">-->
-<script>
-    $(document).ready(function(){
-        loadContent($(".home-message-title"), "home-message-title");
-        loadContent($(".home-message"), "home-message");
-    });
-                      
-    function loadContent(element, location) {
-        $.get('/api/content', { location: location }, function(data) {
-            element.text(data.value);
-            console.log(data.value);
+    <script>
+        $(document).ready(function() {
+            loadContent($(".home-message-title"), "home-message-title");
+            loadContent($(".home-message"), "home-message");
+            loadContent($(".slide2-message-title"), "slide2-message-title");
+            loadContent($(".slide2-message"), "slide2-message");
+            loadContent($(".slide3-message-title"), "slide3-message-title");
+            loadContent($(".slide3-message"), "slide3-message");
+            loadContent($(".contact-message-title"), "contact-message-title");
+            loadContent($(".contact-message"), "contact-message");
         });
-    }
-              
+
+        function loadContent(element, location) {
+            console.log(element);
+            console.log(location);
+            $.get('/api/content', {
+                location: location
+            }, function(data) {
+                element.text(data.value);
+            });
+        }
+
+
+        // Get the id of the <path> element and the length of <path>
+        var triangle = document.getElementById("triangle");
+        var length = triangle.getTotalLength();
+
+        // The start position of the drawing
+        triangle.style.strokeDasharray = length;
+
+        // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
+        triangle.style.strokeDashoffset = length;
+        triangle.style.top = length;
+
+        // Find scroll percentage on scroll (using cross-browser properties), and offset dash same amount as percentage scrolled
+        window.addEventListener("scroll", getScrollpercent);
+
+        function getScrollpercent() {
+            var scrollpercent = (document.body.scrollTop + document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+
+            var draw = length * scrollpercent;
+
+            // Reverse the drawing (when scrolling upwards)
+            triangle.style.strokeDashoffset = length - draw;
+            triangle.style.top = length - draw;
+        }
+
     </script>
 
 </body>
