@@ -11,14 +11,13 @@
     <div class="home lrg-img-background">
         <div class="home-message-title"></div>
         <div class="home-message"></div>
+        <div id="scrolldown">
+            Scroll down
+            <!-- img from http://www.picol.org/-->
+            <img src="/images/iconfinder_arrow_full_down_103291 (1).png">
+        </div>
     </div>
-    <!--
-    <div class="row">
-        <div class="col-sm-4"><img class="small-img-1" src="/images/w400-903990nYNWfN7C.jpg"></div>
-        <div class="col-sm-4"><img class="small-img-2" src="/images/w400-903990vY9HmRU8.jpg"></div>
-        <div class="col-sm-4"><img class="small-img-3" src="/images/photo-1470321386428-4b1668f21ad3.jpg"></div>
-    </div>
--->
+
     <div class="slide2 lrg-img-background">
         <div class="slide2-message-title"></div>
         <div class="slide2-message"></div>
@@ -28,8 +27,12 @@
         <div class="slide3-message"></div>
     </div>
     <div class="slide4 lrg-img-background" style="background-image: url('/images/photo-1470321386428-4b1668f21ad3.jpg')">
-        <div class="slide4-message-title"></div>
-        <div class="slide4-message"></div>
+        <svg id="slide4-SVG">
+            <path fill="none" stroke="white" stroke-width="5" id="square" d="M100 100 L100 400 L800 400 L800 100 Z" />
+            <text x="150" y="150" fill="white" class="slide4-message-title"></text>
+            <text x="200" y="200" fill="white" class="slide4-message"></text>
+            Sorry, your browser does not support inline SVG.
+        </svg>
     </div>
     <div class="contact-img lrg-img-background" style="background-image: url('/images/20190208_150716_HDR.jpg')">
         <div class="container contact-form">
@@ -53,26 +56,43 @@
         </div>
     </div>
 
-    <svg id="mySVG">
-        <path fill="none" stroke="red" stroke-width="3" id="triangle" d="M150 0 L75 200 L225 200 Z" />
-        Sorry, your browser does not support inline SVG.
-    </svg>
+    <img class="small-img-1" src="/images/w400-903990nYNWfN7C.jpg">
+    <img class="small-img-2" src="/images/w400-903990vY9HmRU8.jpg">
+    <img class="small-img-3" src="/images/photo-1470321386428-4b1668f21ad3.jpg">
+    <img class="small-img-4" src="/images/w400-903990vY9HmRU8.jpg">
+    <img class="small-img-5" src="/images/photo-1470321386428-4b1668f21ad3.jpg">
+    <img class="small-img-6" src="/images/w400-903990nYNWfN7C.jpg">
+    <img class="small-img-7" src="/images/photo-1470321386428-4b1668f21ad3.jpg">
+    <img class="small-img-8" src="/images/w400-903990nYNWfN7C.jpg">
+    <img class="small-img-9" src="/images/w400-903990vY9HmRU8.jpg">
     <!--<img src="/images/Old-European-Halo-Engagement-Ring-on-Purple-Background.jpg">-->
     <script>
         $(document).ready(function() {
+            //load in background images first
             loadContent($(".home"), "home-img", "background");
+            loadContent($(".slide2"), "slide2-img", "background");
+            loadContent($(".slide3"), "slide3-img", "background");
+            loadContent($(".slide4"), "slide4-img", "background");
+            loadContent($(".contact-img"), "contact-img", "background");
+
+            loadContent($(".small-img-1"), "small-img-1", "image");
+            loadContent($(".small-img-2"), "small-img-2", "image");
+            loadContent($(".small-img-3"), "small-img-3", "image");
+            loadContent($(".small-img-4"), "small-img-4", "image");
+            loadContent($(".small-img-5"), "small-img-5", "image");
+            loadContent($(".small-img-6"), "small-img-6", "image");
+            loadContent($(".small-img-7"), "small-img-7", "image");
+            loadContent($(".small-img-8"), "small-img-8", "image");
+            loadContent($(".small-img-9"), "small-img-9", "image");
+
             loadContent($(".home-message-title"), "home-message-title", "text");
             loadContent($(".home-message"), "home-message", "text");
-            loadContent($(".slide2"), "slide2-img", "background");
             loadContent($(".slide2-message-title"), "slide2-message-title", "text");
             loadContent($(".slide2-message"), "slide2-message", "text");
-            loadContent($(".slide3"), "slide3-img", "background");
             loadContent($(".slide3-message-title"), "slide3-message-title", "text");
             loadContent($(".slide3-message"), "slide3-message", "text");
-            loadContent($(".slide4"), "slide4-img", "background");
             loadContent($(".slide4-message-title"), "slide4-message-title", "text");
             loadContent($(".slide4-message"), "slide4-message", "text");
-            loadContent($(".contact-img"), "contact-img", "background");
             loadContent($(".contact-message-title"), "contact-message-title", "text");
             loadContent($(".contact-message"), "contact-message", "text");
         });
@@ -87,33 +107,75 @@
                     element.text(data.data[0].value);
                 } else if (type == "background") {
                     element.css("background-image", 'url(' + data.data[0].value + ')');
+                } else if (type == "image") {
+                    element.attr('src', data.data[0].value);
                 }
             });
         }
 
 
         // Get the id of the <path> element and the length of <path>
-        var triangle = document.getElementById("triangle");
-        var length = triangle.getTotalLength();
+        var square = document.getElementById("square");
+        //        var 
+        var length = square.getTotalLength();
 
         // The start position of the drawing
-        triangle.style.strokeDasharray = length;
+        square.style.strokeDasharray = length;
 
         // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
-        triangle.style.strokeDashoffset = length;
-        triangle.style.top = length;
+        square.style.strokeDashoffset = length;
+        //        triangle.style.top = length;
 
         // Find scroll percentage on scroll (using cross-browser properties), and offset dash same amount as percentage scrolled
-        window.addEventListener("scroll", getScrollpercent);
+        window.addEventListener("scroll", scrollEffects);
+
+        function scrollEffects() {
+            var scrollpercent = getScrollpercent();
+
+
+            console.log(scrollpercent);
+            $(".small-img-1").css('top', '' + (120 - (scrollpercent * 500)) + '%');
+            $(".small-img-2").css('top', '' + (120 - (scrollpercent * 800)) + '%');
+            $(".small-img-3").css('top', '' + (120 - (scrollpercent * 600)) + '%');
+            $(".small-img-4").css('top', '' + (120 - ((scrollpercent - 0.2) * 600)) + '%');
+            $(".small-img-5").css('top', '' + (120 - ((scrollpercent - 0.3) * 900)) + '%');
+            $(".small-img-6").css('top', '' + (120 - ((scrollpercent - 0.4) * 800)) + '%');
+            $(".small-img-7").css('top', '' + (120 - ((scrollpercent - 0.6) * 400)) + '%');
+            $(".small-img-8").css('top', '' + (120 - ((scrollpercent - 0.5) * 900)) + '%');
+            $(".small-img-9").css('top', '' + (120 - ((scrollpercent - 0.6) * 800)) + '%');
+
+            // hide scroll down message
+            if (scrollpercent < .05) {
+                $("#scrolldown").css('opacity', '0');
+            }
+            
+            if (scrollpercent > 0.18) {
+                $(".slide2-message-title").css('opacity', '' + (scrollpercent * 20 - 3.9) + '');
+                $(".slide2-message").css('opacity', '' + (scrollpercent * 20 - 3.9) + '');
+            }
+
+            if (scrollpercent > 0.4) {
+                $(".slide3-message-title").css('opacity', '' + (scrollpercent * 20 - 9) + '');
+                $(".slide3-message").css('opacity', '' + (scrollpercent * 20 - 9) + '');
+            }
+
+            if (scrollpercent > 0.6) {
+                $("#slide4-SVG").css('opacity', '' + (scrollpercent - .6) * 20 + '');
+                // Reverse the drawing (when scrolling upwards)
+                var draw = length * (scrollpercent - 0.6) * 8;
+                console.log(draw);
+                if (draw < length + 5) {
+                    square.style.strokeDashoffset = length - draw;
+                } else {
+                    square.style.strokeDashoffset = 0;
+                }
+            }
+        }
 
         function getScrollpercent() {
             var scrollpercent = (document.body.scrollTop + document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 
-            var draw = length * scrollpercent;
-
-            // Reverse the drawing (when scrolling upwards)
-            triangle.style.strokeDashoffset = length - draw;
-            triangle.style.top = length - draw;
+            return scrollpercent;
         }
 
     </script>

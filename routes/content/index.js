@@ -79,12 +79,13 @@ function getContentList(request, response) {
 //Get single user
 function getContent(request, response) {
     var params = [];
-    if(request.query.id === parseInt(request.query.id, 10)) {
-        params[0] = request.query.id;
-    }else {
+    console.log(isNaN(request.query.id));
+    if (isNaN(request.query.id)) { //if(request.query.id === parseInt(request.query.id, 10)) {
         params[0] = request.query.location;
+    } else {
+        params[0] = request.query.id;
     }
-
+    console.log(params[0]);
     getContentDb(params, function (error, result) {
 
         console.log(result);
@@ -108,7 +109,7 @@ function setContent(request, response) {
                   request.body.value];
 
     updateContentDb(params, function (error, result) {
-        
+
         console.log(params);
         if (error || result == null) {
             response.status(500).json({
@@ -214,17 +215,15 @@ function getContentListDb(callback) {
 function getContentDb(params, callback) {
     console.log("Getting content from DB");
     var sql;
-    console.log(params[1]);
-    if(params[0] === parseInt(params[0], 10)) {
-    console.log("finding by id");
-    sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE c.id = $1::int";
+    if (isNaN(params[0])) {
+        console.log("finding by location");
+        sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE l.name = $1";
     } else {
-    console.log("finding by location");
-    sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE l.name = $1";
+        console.log("finding by id");
+        sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE c.id = $1::int";
     }
 
     //const params = [location];
-    console.log(params["id"]);
     pool.query(sql, params, function (err, result) {
         if (err) {
             console.log("Error in query: ")

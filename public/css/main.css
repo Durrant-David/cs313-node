@@ -1,14 +1,18 @@
-
 .lrg-img-background {
-  height: 110vh; 
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    height: 110vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 div.row {
     text-align: center;
+}
+
+#scrolldown {
+    color: white;
+    margin: 30% 45% 0 45%
 }
 
 .home-message-title {
@@ -30,35 +34,176 @@ div.row {
     width: 500px;
 }
 
+.slide2-message-title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 35%;
+    margin-left: 50%;
+    color: white;
+    font-size: 2em;
+    background: rgba(100, 100, 100, 0.8);
+    width: 500px;
+    opacity: 0;
+}
+
+.slide2-message {
+    float: bottom;
+    font-size: 1em;
+    margin-left: 50%;
+    text-align: center;
+    color: white;
+    background: rgba(150, 150, 150, 0.6);
+    width: 500px;
+    opacity: 0;
+}
+
+.slide3-message-title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20%;
+    margin-left: 20%;
+    color: white;
+    font-size: 2em;
+    background: rgba(100, 100, 100, 0.8);
+    width: 500px;
+    opacity: 0;
+}
+
+.slide3-message {
+    float: bottom;
+    font-size: 1em;
+    margin-left: 20%;
+    text-align: center;
+    color: white;
+    background: rgba(150, 150, 150, 0.6);
+    width: 500px;
+    opacity: 0;
+}
+
 .small-img-1 {
+    position: fixed;
+    top: 120%;
+    left: 2%;
     height: 250px;
-  -ms-transform: rotate(-20deg); /* IE 9 */
-  -webkit-transform: rotate(-20deg); /* Safari */
-  transform: rotate(-20deg);
+  box-shadow: 10px 10px 5px black;
+    -ms-transform: rotate(-20deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-20deg);
+    /* Safari */
+    transform: rotate(-20deg);
 }
 
 .small-img-2 {
+    position: fixed;
+    top: 120%;
+    left: 40%;
     height: 250px;
-  -ms-transform: rotate(5deg); /* IE 9 */
-  -webkit-transform: rotate(5deg); /* Safari */
-  transform: rotate(5deg);
+  box-shadow: 20px 20px 5px black;
+    -ms-transform: rotate(5deg);
+    /* IE 9 */
+    -webkit-transform: rotate(5deg);
+    /* Safari */
+    transform: rotate(5deg);
 }
 
 .small-img-3 {
+    position: fixed;
+    top: 120%;
+    right: 2%;
     height: 250px;
-  -ms-transform: rotate(-12deg); /* IE 9 */
-  -webkit-transform: rotate(-12deg); /* Safari */
-  transform: rotate(-12deg);
+  box-shadow: 15px 15px 5px black;
+    -ms-transform: rotate(-12deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-12deg);
+    /* Safari */
+    transform: rotate(-12deg);
 }
 
+.small-img-4 {
+    position: fixed;
+    top: 120%;
+    left: 2%;
+    height: 250px;
+  box-shadow: 15px 15px 5px black;
+    -ms-transform: rotate(5deg);
+    /* IE 9 */
+    -webkit-transform: rotate(5deg);
+    /* Safari */
+    transform: rotate(5deg);
+}
+
+.small-img-5 {
+    position: fixed;
+    top: 120%;
+    left: 40%;
+    height: 250px;
+  box-shadow: 5px 5px 5px black;
+    -ms-transform: rotate(-12deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-12deg);
+    /* Safari */
+    transform: rotate(-12deg);
+}
+
+.small-img-6 {
+    position: fixed;
+    top: 120%;
+    right: 2%;
+    height: 250px;
+  box-shadow: 17px 17px 5px black;
+    -ms-transform: rotate(-20deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-20deg);
+    /* Safari */
+    transform: rotate(-20deg);
+}
+.small-img-7 {
+    position: fixed;
+    top: 120%;
+    left: 2%;
+    height: 250px;
+  box-shadow: 12px 12px 5px black;
+    -ms-transform: rotate(-20deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-20deg);
+    /* Safari */
+    transform: rotate(-20deg);
+}
+
+.small-img-8 {
+    position: fixed;
+    top: 120%;
+    left: 40%;
+    height: 250px;
+  box-shadow: 4px 4px 5px black;
+    -ms-transform: rotate(10deg);
+    /* IE 9 */
+    -webkit-transform: rotate(10deg);
+    /* Safari */
+    transform: rotate(10deg);
+}
+
+.small-img-9 {
+    position: fixed;
+    top: 120%;
+    right: 2%;
+    height: 250px;
+  box-shadow: 10px 10px 5px black;
+    -ms-transform: rotate(5deg);
+    /* IE 9 */
+    -webkit-transform: rotate(5deg);
+    /* Safari */
+    transform: rotate(5deg);
+}
 .contact-form {
     padding: 30vh 5vh;
 }
 
-#mySVG {
-/*  position: fixed;*/
-/*  top: 15%;*/
-  width: 400px;
-  height: 210px;
-  margin-left:-50px;
+#slide4-SVG {
+    /*  position: fixed;*/
+    top: 30%;
+    left: 30%;
+    width: 802px;
+    height: 402px;
+    opacity: 0;
 }
