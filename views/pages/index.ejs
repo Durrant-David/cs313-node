@@ -8,8 +8,8 @@
 <body>
 
     <% include ../partials/nav.ejs %>
-    <div class="lrg-img-background" style="background-image: url('/images/Old-European-Halo-Engagement-Ring-on-Purple-Background.jpg')">
-        <div class="home-message-title" onload="loadContent(this, 'home-message-title')"></div>
+    <div class="home lrg-img-background">
+        <div class="home-message-title"></div>
         <div class="home-message"></div>
     </div>
     <!--
@@ -19,19 +19,19 @@
         <div class="col-sm-4"><img class="small-img-3" src="/images/photo-1470321386428-4b1668f21ad3.jpg"></div>
     </div>
 -->
-    <div class="lrg-img-background" style="background-image: url('/images/store-pic-2.jpg')">
-        <div class="slide2-message-title" onload="loadContent(this, 'slide2-message-title')"></div>
+    <div class="slide2 lrg-img-background">
+        <div class="slide2-message-title"></div>
         <div class="slide2-message"></div>
     </div>
-    <div class="lrg-img-background" style="background-image: url('/images/1.jpg')">
-        <div class="slide3-message-title" onload="loadContent(this, 'slide3-message-title')"></div>
+    <div class="slide3 lrg-img-background" style="background-image: url('/images/1.jpg')">
+        <div class="slide3-message-title"></div>
         <div class="slide3-message"></div>
     </div>
-    <div class="lrg-img-background" style="background-image: url('/images/photo-1470321386428-4b1668f21ad3.jpg')">
-        <div class="slide4-message-title" onload="loadContent(this, 'slide4-message-title')"></div>
+    <div class="slide4 lrg-img-background" style="background-image: url('/images/photo-1470321386428-4b1668f21ad3.jpg')">
+        <div class="slide4-message-title"></div>
         <div class="slide4-message"></div>
     </div>
-    <div class="contact lrg-img-background" style="background-image: url('/images/20190208_150716_HDR.jpg')">
+    <div class="contact-img lrg-img-background" style="background-image: url('/images/20190208_150716_HDR.jpg')">
         <div class="container contact-form">
             <form class="form-horizontal" action="/action_page.php">
                 <div class="form-group">
@@ -60,23 +60,34 @@
     <!--<img src="/images/Old-European-Halo-Engagement-Ring-on-Purple-Background.jpg">-->
     <script>
         $(document).ready(function() {
-            loadContent($(".home-message-title"), "home-message-title");
-            loadContent($(".home-message"), "home-message");
-            loadContent($(".slide2-message-title"), "slide2-message-title");
-            loadContent($(".slide2-message"), "slide2-message");
-            loadContent($(".slide3-message-title"), "slide3-message-title");
-            loadContent($(".slide3-message"), "slide3-message");
-            loadContent($(".contact-message-title"), "contact-message-title");
-            loadContent($(".contact-message"), "contact-message");
+            loadContent($(".home"), "home-img", "background");
+            loadContent($(".home-message-title"), "home-message-title", "text");
+            loadContent($(".home-message"), "home-message", "text");
+            loadContent($(".slide2"), "slide2-img", "background");
+            loadContent($(".slide2-message-title"), "slide2-message-title", "text");
+            loadContent($(".slide2-message"), "slide2-message", "text");
+            loadContent($(".slide3"), "slide3-img", "background");
+            loadContent($(".slide3-message-title"), "slide3-message-title", "text");
+            loadContent($(".slide3-message"), "slide3-message", "text");
+            loadContent($(".slide4"), "slide4-img", "background");
+            loadContent($(".slide4-message-title"), "slide4-message-title", "text");
+            loadContent($(".slide4-message"), "slide4-message", "text");
+            loadContent($(".contact-img"), "contact-img", "background");
+            loadContent($(".contact-message-title"), "contact-message-title", "text");
+            loadContent($(".contact-message"), "contact-message", "text");
         });
 
-        function loadContent(element, location) {
+        function loadContent(element, location, type) {
             console.log(element);
             console.log(location);
             $.get('/api/content', {
                 location: location
             }, function(data) {
-                element.text(data.value);
+                if (type == "text") {
+                    element.text(data.data[0].value);
+                } else if (type == "background") {
+                    element.css("background-image", 'url(' + data.data[0].value + ')');
+                }
             });
         }
 

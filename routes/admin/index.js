@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 //Get all users
-router.get('/api/contentList', getContentList);
+router.get('/admin', getContentList);
 
 //Insert new user
 //router.post('/api/content', insertContent);
@@ -18,8 +18,7 @@ router.get('/api/contentList', getContentList);
 router.get('/api/content', getContent);
 
 //Update user
-router.put('/api/content', verifyLogin);
-router.put('/api/content', setContent);
+//router.put('/api/content', setContent);
 
 //Delete user
 //router.delete('/api/content', deleteContent);
@@ -29,30 +28,18 @@ router.put('/api/content', setContent);
 module.exports = router;
 
 //CONTROLLER
-function verifyLogin(req, res, next) {
-    if (req.session.username) {
-        next();
-    } else {
-        console.log("Access resticted");
-    }
-}
-
 //Get all users
 function getContentList(request, response) {
 
     getContentListDb(function (error, result) {
 
-        console.log(result);
-        if (error || result == null) {
+        if (error || result == null || result.length != 1) {
             response.status(500).json({
                 success: false,
                 data: error
             });
         } else {
-            response.status(200).json({
-                success: true,
-                data: result
-            });
+            response.status(200).json(result);
         }
     });
 }
@@ -78,51 +65,40 @@ function getContentList(request, response) {
 
 //Get single user
 function getContent(request, response) {
-    var params = [];
-    if(request.query.id === parseInt(request.query.id, 10)) {
-        params[0] = request.query.id;
-    }else {
-        params[0] = request.query.location;
-    }
+    var location = [request.query.location];
 
-    getContentDb(params, function (error, result) {
+    getContentDb(location, function (error, result) {
 
-        console.log(result);
-        if (error || result == null) {
+        if (error || result == null || result.length != 1) {
             response.status(500).json({
                 success: false,
                 data: error
             });
         } else {
-            response.status(200).json({
-                success: true,
-                data: result
-            });
+            response.status(200).json(result[0]);
         }
     });
 }
 
 //Update user
-function setContent(request, response) {
-    var params = [request.body.id,
-                  request.body.value];
-
-    updateContentDb(params, function (error, result) {
-        
-        console.log(params);
-        if (error || result == null) {
-            response.status(500).json({
-                success: false,
-                data: error
-            });
-        } else {
-            response.status(200).json({
-                success: true,
-                data: result
-            });
-        }
-    });
-}
+//function setContent(request, response) {
+//    var params = [request.query.id,
+//                  request.query.username,
+//                  request.query.first_name,
+//                  request.query.last_name];
+//
+//    updateContentDb(params, function (error, result) {
+//
+//        if (error || result == null || result.length != 1) {
+//            response.status(500).json({
+//                success: false,
+//                data: error
+//            });
+//        } else {
+//            response.status(200).json(result);
+//        }
+//    });
+//}
 
 //Delete user
 //function deleteContent(request, response) {
@@ -165,9 +141,9 @@ function setContent(request, response) {
 //MODEL
 //Get all content
 function getContentListDb(callback) {
-    console.log("Getting all content from DB");
+    console.log("Getting all users from DB");
 
-    const sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id";
+    const sql = "SELECT c.id, c.name, c.value, l.name FROM content c LEFT JOIN content_location l ON c.id = l.id";
 
 
     pool.query(sql, function (err, result) {
@@ -181,7 +157,7 @@ function getContentListDb(callback) {
         console.log("Found result: " + JSON.stringify(result.rows));
 
 
-        callback(null, result.rows);
+        callback(result.rows);
     });
 
 }
@@ -213,18 +189,11 @@ function getContentListDb(callback) {
 //Get single user
 function getContentDb(params, callback) {
     console.log("Getting content from DB");
-    var sql;
-    console.log(params[1]);
-    if(params[0] === parseInt(params[0], 10)) {
-    console.log("finding by id");
-    sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE c.id = $1::int";
-    } else {
-    console.log("finding by location");
-    sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE l.name = $1";
-    }
+
+    const sql = "SELECT c.id, c.name, c.value, l.name FROM content c LEFT JOIN content_location l ON c.id = l.id WHERE l.name = $1";
 
     //const params = [location];
-    console.log(params["id"]);
+    
     pool.query(sql, params, function (err, result) {
         if (err) {
             console.log("Error in query: ")
@@ -241,26 +210,26 @@ function getContentDb(params, callback) {
 }
 
 //Update user
-function updateContentDb(params, callback) {
-    console.log("Getting all users from DB");
-
-    const sql = "UPDATE content SET value = $2 WHERE id = $1::int";
-
-    pool.query(sql, params, function (err, result) {
-        if (err) {
-            console.log("Error in query: ")
-            console.log(err);
-            callback(err, null);
-        }
-
-        // Log this to the console for debugging purposes.
-        console.log("Found result: " + JSON.stringify(result.rows));
-
-
-        callback(null, result.rows);
-    });
-
-}
+//function updateContentDb(params, callback) {
+//    console.log("Getting all users from DB");
+//
+//    const sql = "UPDATE users SET username = $2, first_name = $3, last_name = $4 WHERE id = $1::int";
+//
+//    pool.query(sql, params, function (err, result) {
+//        if (err) {
+//            console.log("Error in query: ")
+//            console.log(err);
+//            callback(err, null);
+//        }
+//
+//        // Log this to the console for debugging purposes.
+//        console.log("Found result: " + JSON.stringify(result.rows));
+//
+//
+//        callback(null, result.rows);
+//    });
+//
+//}
 
 //Delete user
 //function deleteContentDb(id, callback) {
