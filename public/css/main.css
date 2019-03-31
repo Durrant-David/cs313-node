@@ -86,11 +86,11 @@ div.row {
     left: 2%;
     height: 250px;
   box-shadow: 10px 10px 5px black;
+/*
     -ms-transform: rotate(-20deg);
-    /* IE 9 */
     -webkit-transform: rotate(-20deg);
-    /* Safari */
     transform: rotate(-20deg);
+*/
 }
 
 .small-img-2 {
@@ -99,11 +99,11 @@ div.row {
     left: 40%;
     height: 250px;
   box-shadow: 20px 20px 5px black;
+/*
     -ms-transform: rotate(5deg);
-    /* IE 9 */
     -webkit-transform: rotate(5deg);
-    /* Safari */
     transform: rotate(5deg);
+*/
 }
 
 .small-img-3 {
@@ -112,11 +112,11 @@ div.row {
     right: 2%;
     height: 250px;
   box-shadow: 15px 15px 5px black;
+/*
     -ms-transform: rotate(-12deg);
-    /* IE 9 */
     -webkit-transform: rotate(-12deg);
-    /* Safari */
     transform: rotate(-12deg);
+*/
 }
 
 .small-img-4 {
@@ -125,11 +125,11 @@ div.row {
     left: 2%;
     height: 250px;
   box-shadow: 15px 15px 5px black;
+/*
     -ms-transform: rotate(5deg);
-    /* IE 9 */
     -webkit-transform: rotate(5deg);
-    /* Safari */
     transform: rotate(5deg);
+*/
 }
 
 .small-img-5 {
@@ -138,11 +138,11 @@ div.row {
     left: 40%;
     height: 250px;
   box-shadow: 5px 5px 5px black;
+/*
     -ms-transform: rotate(-12deg);
-    /* IE 9 */
     -webkit-transform: rotate(-12deg);
-    /* Safari */
     transform: rotate(-12deg);
+*/
 }
 
 .small-img-6 {
@@ -151,11 +151,11 @@ div.row {
     right: 2%;
     height: 250px;
   box-shadow: 17px 17px 5px black;
+/*
     -ms-transform: rotate(-20deg);
-    /* IE 9 */
     -webkit-transform: rotate(-20deg);
-    /* Safari */
     transform: rotate(-20deg);
+*/
 }
 .small-img-7 {
     position: fixed;
@@ -163,11 +163,11 @@ div.row {
     left: 2%;
     height: 250px;
   box-shadow: 12px 12px 5px black;
+/*
     -ms-transform: rotate(-20deg);
-    /* IE 9 */
     -webkit-transform: rotate(-20deg);
-    /* Safari */
     transform: rotate(-20deg);
+*/
 }
 
 .small-img-8 {
@@ -176,11 +176,11 @@ div.row {
     left: 40%;
     height: 250px;
   box-shadow: 4px 4px 5px black;
+/*
     -ms-transform: rotate(10deg);
-    /* IE 9 */
     -webkit-transform: rotate(10deg);
-    /* Safari */
     transform: rotate(10deg);
+*/
 }
 
 .small-img-9 {
@@ -189,11 +189,11 @@ div.row {
     right: 2%;
     height: 250px;
   box-shadow: 10px 10px 5px black;
+/*
     -ms-transform: rotate(5deg);
-    /* IE 9 */
     -webkit-transform: rotate(5deg);
-    /* Safari */
     transform: rotate(5deg);
+*/
 }
 .contact-form {
     padding: 30vh 5vh;
