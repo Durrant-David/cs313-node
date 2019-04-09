@@ -90,17 +90,24 @@ app.post('/logout', (req, res) => {
 // POST route from contact form
 app.post('/contact', function (req, res) {
     var mailOpts, smtpTrans;
-    smtpTrans = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
+    smtpTrans = nodemailer.createTransport("SMTP", {
+    service: 'Gmail',
+    auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+    }
+        
+//        nodemailer.createTransport({
+//        host: 'smtp.gmail.com',
+//        port: 465,
+//        secure: true,
+//        auth: {
+//            user: process.env.GMAIL_USER,
+//            pass: process.env.GMAIL_PASS
+//        },
+//        tls: {
+//            rejectUnauthorized: false
+//        }
     });
     mailOpts = {
         from: req.body.name + ' &lt;' + req.body.email + '&gt;',
@@ -110,8 +117,8 @@ app.post('/contact', function (req, res) {
     };
     smtpTrans.sendMail(mailOpts, function (error, response) {
         if (error) {
-            console.error(error);
-//            res.redirect('/');
+            console.error('failed to send mail: ' + error);
+            res.redirect('/');
         } else {
             console.log('success');
             res.redirect('/');
