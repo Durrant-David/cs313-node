@@ -90,21 +90,15 @@ app.post('/logout', (req, res) => {
 // POST route from contact form
 app.post('/contact', function (req, res) {
     var mailOpts, smtpTrans;
-    smtpTrans = nodemailer.createTransport("SMTP", {
-    service: 'Gmail',
-    auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS
-    }
-        
-//        nodemailer.createTransport({
-//        host: 'smtp.gmail.com',
-//        port: 465,
-//        secure: true,
-//        auth: {
-//            user: process.env.GMAIL_USER,
-//            pass: process.env.GMAIL_PASS
-//        },
+    smtpTrans = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS
+        }
+//        ,
 //        tls: {
 //            rejectUnauthorized: false
 //        }
