@@ -179,7 +179,7 @@ function getContentListDb(callback) {
         }
 
         // Log this to the console for debugging purposes.
-        console.log("Found result: " + JSON.stringify(result.rows));
+//        console.log("Found result: " + JSON.stringify(result.rows));
 
 
         callback(null, result.rows);
@@ -232,7 +232,7 @@ function getContentDb(params, callback) {
         }
 
         // Log this to the console for debugging purposes.
-        console.log("Found result: " + JSON.stringify(result.rows));
+//        console.log("Found result: " + JSON.stringify(result.rows));
 
         callback(null, result.rows);
     });
@@ -253,7 +253,7 @@ function updateContentDb(params, callback) {
         }
 
         // Log this to the console for debugging purposes.
-        console.log("Found result: " + JSON.stringify(result.rows));
+//        console.log("Found result: " + JSON.stringify(result.rows));
 
 
         callback(null, result.rows);
