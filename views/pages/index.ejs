@@ -36,18 +36,15 @@
     </div>
     <div class="contact-img lrg-img-background" style="background-image: url('/images/20190208_150716_HDR.jpg')">
         <div class="container contact-form">
-            <form class="form-horizontal" action="/action_page.php">
+            <form class="form-horizontal" action="/contact" method="post">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="pwd">
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="pwd">
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" rows="5" id="message" placeholder="Enter message"></textarea>
+                    <textarea class="form-control" rows="5" id="message" placeholder="Enter message" name="message"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Submit</button>
@@ -120,7 +117,7 @@
         var length = square.getTotalLength();
 
         // The start position of the drawing
-        square.style.strokeDasharray = length;
+        square.style.strokeDasharray = length; 
 
         // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
         square.style.strokeDashoffset = length;

@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const myPlaintextPassword = 'admin';
@@ -24,7 +25,7 @@ var admin = require('./routes/admin/index');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 app.use(bodyParser.json());
 app.use(session({
@@ -85,6 +86,40 @@ app.post('/logout', (req, res) => {
     }
 });
 
+// Example provided by https://tylerkrys.ca
+// POST route from contact form
+app.post('/contact', function (req, res) {
+    let mailOpts, smtpTrans;
+    smtpTrans = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+    mailOpts = {
+        from: req.body.name + ' &lt;' + req.body.email + '&gt;',
+        to: process.env.GMAIL_USER,
+        subject: 'New message from contact form at durrant jewelry',
+        text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
+    };
+    smtpTrans.sendMail(mailOpts, function (error, response) {
+        if (error) {
+            console.error(error);
+            res.redirect('/');
+        } else {
+            console.log('success');
+            res.redirect('/');
+        }
+    });
+});
+
+
 // create route for server time
 app.get('/admin', verifyLogin);
 app.get('/admin', (req, res) => res.render('pages/admin'));
@@ -107,6 +142,6 @@ function verifyLogin(req, res, next) {
     if (req.session.username) {
         next();
     } else {
-    res.redirect('/login');
+        res.redirect('/login');
     }
 }
