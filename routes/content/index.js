@@ -42,7 +42,7 @@ function getContentList(request, response) {
 
     getContentListDb(function (error, result) {
 
-        console.log(result);
+//        console.log(result);
         if (error || result == null) {
             response.status(500).json({
                 success: false,
@@ -79,16 +79,16 @@ function getContentList(request, response) {
 //Get single user
 function getContent(request, response) {
     var params = [];
-    console.log(isNaN(request.query.id));
+//    console.log(isNaN(request.query.id));
     if (isNaN(request.query.id)) { //if(request.query.id === parseInt(request.query.id, 10)) {
         params[0] = request.query.location;
     } else {
         params[0] = request.query.id;
     }
-    console.log(params[0]);
+//    console.log(params[0]);
     getContentDb(params, function (error, result) {
 
-        console.log(result);
+//        console.log(result);
         if (error || result == null) {
             response.status(500).json({
                 success: false,
@@ -110,7 +110,7 @@ function setContent(request, response) {
 
     updateContentDb(params, function (error, result) {
 
-        console.log(params);
+//        console.log(params);
         if (error || result == null) {
             response.status(500).json({
                 success: false,
@@ -166,7 +166,7 @@ function setContent(request, response) {
 //MODEL
 //Get all content
 function getContentListDb(callback) {
-    console.log("Getting all content from DB");
+//    console.log("Getting all content from DB");
 
     const sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id";
 
@@ -213,13 +213,13 @@ function getContentListDb(callback) {
 
 //Get single user
 function getContentDb(params, callback) {
-    console.log("Getting content from DB");
+//    console.log("Getting content from DB");
     var sql;
     if (isNaN(params[0])) {
-        console.log("finding by location");
+//        console.log("finding by location");
         sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE l.name = $1";
     } else {
-        console.log("finding by id");
+//        console.log("finding by id");
         sql = "SELECT c.id, c.name, c.value, l.name FROM content c inner JOIN content_location l ON c.location_id = l.id WHERE c.id = $1::int";
     }
 
@@ -241,7 +241,7 @@ function getContentDb(params, callback) {
 
 //Update user
 function updateContentDb(params, callback) {
-    console.log("Getting all users from DB");
+//    console.log("Getting all users from DB");
 
     const sql = "UPDATE content SET value = $2 WHERE id = $1::int";
 

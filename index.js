@@ -89,7 +89,7 @@ app.post('/logout', (req, res) => {
 // Example provided by https://tylerkrys.ca
 // POST route from contact form
 app.post('/contact', function (req, res) {
-    let mailOpts, smtpTrans;
+    var mailOpts, smtpTrans;
     smtpTrans = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -111,7 +111,7 @@ app.post('/contact', function (req, res) {
     smtpTrans.sendMail(mailOpts, function (error, response) {
         if (error) {
             console.error(error);
-            res.redirect('/');
+//            res.redirect('/');
         } else {
             console.log('success');
             res.redirect('/');
